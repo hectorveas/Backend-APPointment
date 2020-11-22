@@ -19,4 +19,7 @@ function agregarPaciente(paciente) {
 function eliminarPaciente(rutPaciente) {
     return paciente_schema_1.default.findOneAndRemove({ rut: rutPaciente });
 }
-exports.default = { mostrarTodoPaciente, BuscarPacienteRut, agregarPaciente, eliminarPaciente };
+function existePaciente(rutPaciente) {
+    return paciente_schema_1.default.findOne({ rut: rutPaciente });
+}
+exports.default = { mostrarTodoPaciente, BuscarPacienteRut, agregarPaciente, eliminarPaciente, existePaciente };

@@ -17,7 +17,11 @@ function eliminarPaciente(rutPaciente : string){
      return model.findOneAndRemove({rut : rutPaciente});
 }
 
-export default {mostrarTodoPaciente , BuscarPacienteRut, agregarPaciente, eliminarPaciente}
+function existePaciente(rutPaciente : string){
+    return model.findOne({rut : rutPaciente});
+}
+
+export default {mostrarTodoPaciente , BuscarPacienteRut, agregarPaciente, eliminarPaciente, existePaciente}
 
 
 

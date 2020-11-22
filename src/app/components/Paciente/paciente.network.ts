@@ -20,13 +20,17 @@ router.get("/all",async function(req: Request, res: Response){ //muestra a todos
 router.post("/add", async function(req: Request, res: Response){ // agrega un paciente
 
     const paciente : Paciente = req.body;
-    try {
-        const newPaciente = await pacienteController.agregarPaciente(paciente);
-        responseModule.success(req, res, newPaciente,201);
-
-    } catch (error) {
-        responseModule.error(req,res,"Error desconocido");
-    }
+        if( await pacienteController.existePaciente(req.body.rut) != true){
+            try {
+                const newPaciente = await pacienteController.agregarPaciente(paciente);
+                responseModule.success(req, res, newPaciente,201);
+            } catch (error) {
+                responseModule.error(req,res,"Error desconocido");
+            }
+        }else{
+            responseModule.error(req,res,"PACIENTE EXISTENTE");
+        }
+    
 });
 
 router.get("/rut", async function(req: Request, res: Response){ //busca al paciente por rut

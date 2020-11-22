@@ -1,3 +1,4 @@
+import e from "express";
 import { Paciente } from "../../model/paciente.model";
 import pacienteRepository from "./paciente.repository"
 
@@ -19,5 +20,14 @@ function eliminarPaciente(rutPaciente : string){
     return pacienteRepository.eliminarPaciente(rutPaciente);
 }
 
+async function existePaciente(rutPaciente : string){
+    const paciente : Paciente | null =  await pacienteRepository.existePaciente(rutPaciente);
+    if(paciente != null){
+        return true;
+    }else{
+        return false;
+    }
+}
 
-export default {mostrarTodoPaciente , BuscarPacienteRut, agregarPaciente, eliminarPaciente}
+
+export default {mostrarTodoPaciente , BuscarPacienteRut, agregarPaciente, eliminarPaciente,existePaciente}

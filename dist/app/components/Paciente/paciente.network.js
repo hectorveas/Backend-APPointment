@@ -30,12 +30,17 @@ router.get("/all", function (req, res) {
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const paciente = req.body;
-        try {
-            const newPaciente = yield paciente_controller_1.default.agregarPaciente(paciente);
-            response_module_1.default.success(req, res, newPaciente, 201);
+        if ((yield paciente_controller_1.default.existePaciente(req.body.rut)) != true) {
+            try {
+                const newPaciente = yield paciente_controller_1.default.agregarPaciente(paciente);
+                response_module_1.default.success(req, res, newPaciente, 201);
+            }
+            catch (error) {
+                response_module_1.default.error(req, res, "Error desconocido");
+            }
         }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
+        else {
+            response_module_1.default.error(req, res, "PACIENTE EXISTENTE");
         }
     });
 });
