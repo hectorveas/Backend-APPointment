@@ -1,6 +1,6 @@
 import express, {Router, Request, Response} from "express"
 import paciente from ".";
-import { Paciente } from "../../model/paciente.model";
+import { Paciente } from "../../models/paciente.model";
 import responseModule from "../../modules/response.module";
 import pacienteController from "./paciente.controller";
 

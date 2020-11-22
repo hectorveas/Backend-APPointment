@@ -1,5 +1,5 @@
 import e from "express";
-import { Paciente } from "../../model/paciente.model";
+import { Paciente } from "../../models/paciente.model";
 import pacienteRepository from "./paciente.repository"
 
 function mostrarTodoPaciente(){

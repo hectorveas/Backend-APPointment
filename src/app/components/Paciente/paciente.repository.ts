@@ -1,4 +1,4 @@
-import { Paciente } from "../../model/paciente.model";
+import { Paciente } from "../../models/paciente.model";
 import model,{ PacienteDoc } from "./paciente.schema";
 
 function mostrarTodoPaciente(){
