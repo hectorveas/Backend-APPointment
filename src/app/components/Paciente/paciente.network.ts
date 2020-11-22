@@ -1,51 +1,59 @@
 import express, {Router, Request, Response} from "express"
+import paciente from ".";
+import { Paciente } from "../../model/paciente.model";
 import responseModule from "../../modules/response.module";
-import pacienteSchema from "./paciente.schema";
+import pacienteController from "./paciente.controller";
 
-interface pacienteDoc{
-    _id?: string;
-    nombrePaciente: string;
-    apellidoPaciente: string;
-    rut: string;
-    email: string;
-    fono: string;
-    contrasena: string;
-  }
 
 const router: Router = express.Router();
 
-router.get("/all",async function(req: Request, res: Response){
+router.get("/all",async function(req: Request, res: Response){ //muestra a todos los pacientes
     
     try {
-        const pacientes: pacienteDoc[] = await pacienteSchema.find();
-        responseModule.success(req, res, pacientes,200);
+        const paciente: Paciente[] = await pacienteController.mostrarTodoPaciente();
+        responseModule.success(req, res, paciente,200);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
 });
 
-router.post("/add", async function(req: Request, res: Response){
+router.post("/add", async function(req: Request, res: Response){ // agrega un paciente
 
-    //const body: Partial<Message> = req.body;
-
-    const paciente: Partial<pacienteDoc> = {
-
-        nombrePaciente: req.body['nombrePaciente'],
-        apellidoPaciente: req.body['apellidoPaciente'],
-        rut: req.body['rut'],
-        email: req.body['email'],
-        fono: req.body['fono'],
-        contrasena: req.body['contrasena'],
-    };
-
+    const paciente : Paciente = req.body;
     try {
-        const newMessage = await pacienteSchema.create<Partial<pacienteDoc>>(paciente);
-        responseModule.success(req, res, newMessage,201);
+        const newPaciente = await pacienteController.agregarPaciente(paciente);
+        responseModule.success(req, res, newPaciente,201);
 
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
-    
+});
+
+router.get("/rut", async function(req: Request, res: Response){ //busca al paciente por rut
+
+    try {
+        const paciente : Paciente | null = await pacienteController.BuscarPacienteRut(req.body.rut);
+        responseModule.success(req,res,paciente,200);
+    } catch (error) {
+        responseModule.error(req,res,"Error desconocido");
+    }
+});
+
+router.get("/delete", async function(req: Request, res: Response) { //remover paciente
+
+   try {
+      const ver = await pacienteController.eliminarPaciente(req.body.rut);
+      if(ver != null){
+        responseModule.success(req,res,"SE ELIMINO AL PACIENTE",200);
+      }else{
+          responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
+      }
+      
+     
+   } catch (error) {
+        responseModule.error(req,res,"Error desconocido");
+   }
 });
 
 export default router;
+
