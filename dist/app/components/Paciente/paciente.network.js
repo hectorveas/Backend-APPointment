@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
-const paciente_schema_1 = __importDefault(require("./paciente.schema"));
+const paciente_controller_1 = __importDefault(require("./paciente.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const pacientes = yield paciente_schema_1.default.find();
-            response_module_1.default.success(req, res, pacientes, 200);
+            const paciente = yield paciente_controller_1.default.mostrarTodoPaciente();
+            response_module_1.default.success(req, res, paciente, 200);
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");
@@ -29,18 +29,37 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        //const body: Partial<Message> = req.body;
-        const paciente = {
-            nombrePaciente: req.body['nombrePaciente'],
-            apellidoPaciente: req.body['apellidoPaciente'],
-            rut: req.body['rut'],
-            email: req.body['email'],
-            fono: req.body['fono'],
-            contrasena: req.body['contrasena'],
-        };
+        const paciente = req.body;
         try {
-            const newMessage = yield paciente_schema_1.default.create(paciente);
-            response_module_1.default.success(req, res, newMessage, 201);
+            const newPaciente = yield paciente_controller_1.default.agregarPaciente(paciente);
+            response_module_1.default.success(req, res, newPaciente, 201);
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.get("/rut", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const paciente = yield paciente_controller_1.default.BuscarPacienteRut(req.body.rut);
+            response_module_1.default.success(req, res, paciente, 200);
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.get("/delete", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield paciente_controller_1.default.eliminarPaciente(req.body.rut);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE ELIMINO AL PACIENTE", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL PACIENTE");
+            }
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");
