@@ -56,8 +56,7 @@ router.delete("/delete", async function(req: Request, res: Response) { //remover
       }else{
           responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
       }
-      
-     
+
    } catch (error) {
         responseModule.error(req,res,"Error desconocido");
    }
