@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
-const contacto_schema_1 = __importDefault(require("./contacto.schema"));
+const contacto_controller_1 = __importDefault(require("./contacto.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const contactos = yield contacto_schema_1.default.find();
+            const contactos = yield contacto_controller_1.default.mostrarTodoContacto();
             response_module_1.default.success(req, res, contactos, 200);
         }
         catch (error) {
@@ -29,18 +29,26 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        //const body: Partial<Message> = req.body;
-        const contacto = {
-            nombrePaciente: req.body['nombrePaciente'],
-            apellidoPaciente: req.body['apellidoPaciente'],
-            rut: req.body['rut'],
-            email: req.body['email'],
-            descripcion: req.body['descripcion'],
-            fechaSolicitud: new Date()
-        };
+        const contacto = req.body;
         try {
-            const newMessage = yield contacto_schema_1.default.create(contacto);
-            response_module_1.default.success(req, res, newMessage, 201);
+            const newContacto = yield contacto_controller_1.default.agregarContacto(contacto);
+            response_module_1.default.success(req, res, newContacto, 201);
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.delete("/delete", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield contacto_controller_1.default.eliminarContacto(req.body._id);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE ELIMINO CONTACTO", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO LA CONTACTO");
+            }
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");

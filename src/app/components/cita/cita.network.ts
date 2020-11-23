@@ -51,11 +51,5 @@ router.delete("/delete", async function(req: Request, res: Response) {
     }
  });
 
-<<<<<<< HEAD
-export default router;
-=======
-});
-
->>>>>>> crisiDev
-
+export default router
 

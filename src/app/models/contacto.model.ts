@@ -1,4 +1,4 @@
-export interface contacto{
+export interface Contacto{
     _id?: string;
     nombrePaciente: string;
     apellidoPaciente: string;
