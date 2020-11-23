@@ -29,5 +29,42 @@ async function existePaciente(rutPaciente : string){
     }
 }
 
+function modificarNombrePaciente(idPaciente : String, nombre : string){
+    return pacienteRepository.modificarNombrePaciente(idPaciente,nombre);
+};
 
-export default {mostrarTodoPaciente , BuscarPacienteRut, agregarPaciente, eliminarPaciente,existePaciente}
+function modificarApellidoPaciente(idPaciente : String, apellido : string){
+    return pacienteRepository.modificarApellidoPaciente(idPaciente, apellido);
+};
+
+function modificarMailPaciente(idPaciente : String, emailPaciente : string){
+    return pacienteRepository.modificarMailPaciente(idPaciente, emailPaciente);
+};
+
+function modificarFonoPaciente(idPaciente : String, fonoPaciente : string){
+    return pacienteRepository.modificarFonoPaciente(idPaciente, fonoPaciente);
+};
+
+function modificarRutPaciente(idPaciente : String, rutPaciente : string){
+    return pacienteRepository.modificarRutPaciente(idPaciente, rutPaciente);
+};
+
+function modificarContrasenaPaciente(idPaciente : String, contrasenaPaciente : string){
+    return pacienteRepository.modificarContrasenaPaciente(idPaciente, contrasenaPaciente);
+};
+
+
+export default {
+    mostrarTodoPaciente, 
+    BuscarPacienteRut, 
+    agregarPaciente, 
+    eliminarPaciente,
+    existePaciente,
+    modificarNombrePaciente,
+    modificarApellidoPaciente,
+    modificarMailPaciente,
+    modificarFonoPaciente,
+    modificarRutPaciente,
+    modificarContrasenaPaciente,
+    
+}
