@@ -36,7 +36,11 @@ router.get("/rut", async function(req: Request, res: Response){ //busca al pacie
 
     try {
         const paciente : Paciente | null = await pacienteController.BuscarPacienteRut(req.body.rut);
-        responseModule.success(req,res,paciente,200);
+        if(paciente != null){
+            responseModule.success(req,res,paciente,200);
+        }else{
+            responseModule.success(req,res,"No se encontro al paciente",200);
+        }
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
@@ -51,8 +55,7 @@ router.delete("/delete", async function(req: Request, res: Response) { //remover
       }else{
           responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
       }
-      
-     
+
    } catch (error) {
         responseModule.error(req,res,"Error desconocido");
    }

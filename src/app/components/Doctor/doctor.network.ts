@@ -1,53 +1,63 @@
 import express, {Router, Request, Response} from "express"
+import { Doctor } from "../../models/doctor.model";
 import responseModule from "../../modules/response.module";
-import doctorSchema from "./doctor.schema";
-
-interface doctorDoc{
-    _id?: string;
-    nombreDoctor: string;
-    apellidoDoctor: string;
-    rut: string;
-    email: string;
-    fono: string;
-    contrasena: string;
-    especialidad: string;
-  }
+import doctorController from "./doctor.controller";
 
 const router: Router = express.Router();
 
-router.get("/all",async function(req: Request, res: Response){
+router.get("/all",async function(req: Request, res: Response){ //muestra a todos los doctors
     
     try {
-        const doctor: doctorDoc[] = await doctorSchema.find();
+        const doctor: Doctor[] = await doctorController.mostrarTodoDoctor();
         responseModule.success(req, res, doctor,200);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
 });
 
-router.post("/add", async function(req: Request, res: Response){
+router.post("/add", async function(req: Request, res: Response){ // agrega un doctor
 
-    //const body: Partial<Message> = req.body;
+    const doctor : Doctor = req.body;
+        if( await doctorController.existeDoctor(req.body.rut) != true){
+            try {
+                const newDoctor = await doctorController.agregarDoctor(doctor);
+                responseModule.success(req, res, newDoctor,201);
+            } catch (error) {
+                responseModule.error(req,res,"Error desconocido");
+            }
+        }else{
+            responseModule.error(req,res,"DOCTOR EXISTENTE");
+        }
+});
 
-    const doctor: Partial<doctorDoc> = {
-
-        nombreDoctor: req.body['nombreDoctor'],
-        apellidoDoctor: req.body['apellidoDoctor'],
-        rut: req.body['rut'],
-        email: req.body['email'],
-        fono: req.body['fono'],
-        contrasena: req.body['contrasena'],
-        especialidad: req.body['especialidad']
-    };
+router.get("/rut", async function(req: Request, res: Response){ //busca al doctor por rut
 
     try {
-        const newMessage = await doctorSchema.create<Partial<doctorDoc>>(doctor);
-        responseModule.success(req, res, newMessage,201);
-
+        const doctor : Doctor | null = await doctorController.BuscarDoctorRut(req.body.rut);
+        if(doctor != null){
+            responseModule.success(req,res,doctor,200);
+        }else{
+            responseModule.success(req,res,"No se encontro al doctor",200);
+        }
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
-    
+});
+
+router.delete("/delete", async function(req: Request, res: Response) { //remover doctor
+
+   try {
+      const ver = await doctorController.eliminarDoctor(req.body.rut);
+      if(ver != null){
+        responseModule.success(req,res,"SE ELIMINO AL DOCTOR",200);
+      }else{
+          responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
+      }
+      
+     
+   } catch (error) {
+        responseModule.error(req,res,"Error desconocido");
+   }
 });
 
 export default router;

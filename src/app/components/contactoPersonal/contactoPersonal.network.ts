@@ -1,50 +1,63 @@
 import express, {Router, Request, Response} from "express"
+import contactoPersonal from ".";
+import { Contacto } from "../../models/contactoPersonal.model";
 import responseModule from "../../modules/response.module";
-import contactoPersonalSchema from "./contactoPersonal.schema";
+import contatoPersonalController from "./contatoPersonal.controller";
 
-interface contactoPersonalDoc{
-    _id?: string;
-    nombrePaciente: string;
-    email: string;
-    contrasena: string;
-    telefono: string;
-    confirmacion?: boolean;
-    fechaSolicitud: Date;
-  }
 
 const router: Router = express.Router();
 
-router.get("/all",async function(req: Request, res: Response){
+router.get("/all",async function(req: Request, res: Response){ //muestra a todos los contactos
     
     try {
-        const contactosPersonal: contactoPersonalDoc[] = await contactoPersonalSchema.find();
-        responseModule.success(req, res, contactosPersonal,200);
+        const contacto: Contacto[] = await contatoPersonalController.mostrarContactos();
+        responseModule.success(req, res, contacto,200);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
 });
 
-router.post("/add", async function(req: Request, res: Response){
+router.post("/add", async function(req: Request, res: Response){ // agrega un contacto
 
-    //const body: Partial<Message> = req.body;
+    
+       // if( contatoPersonalController.existeContacto(req.body.rut) == true){ va ??
+            try {
+                const contacto = await contatoPersonalController.crearContacto(req.body);
+                responseModule.success(req, res, contacto,201);
+            } catch (error) {
+                responseModule.error(req,res,"Error desconocido");
+            }
+});
 
-    const contactoPersonal: Partial<contactoPersonalDoc> = {
-        nombrePaciente: req.body['nombrePaciente'],
-        email: req.body['email'],
-        contrasena: req.body['contrasena'],
-        telefono: req.body['telefono'],
-        confirmacion: req.body['confirmacion'],
-        fechaSolicitud: new Date()
-    };
-
+router.get("/rut", async function(req: Request, res: Response){ //busca al contacto por rut
     try {
-        const newMessage = await contactoPersonalSchema.create<Partial<contactoPersonalDoc>>(contactoPersonal);
-        responseModule.success(req, res, newMessage,201);
-
+            console.log(await contatoPersonalController.buscarContacto(req.body.rut));
+            let contacto: Contacto | null = await contatoPersonalController.buscarContacto(req.body.rut);
+            
+        if(contacto != null){
+            responseModule.success(req,res,contacto,200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRARON CONTACTOS ASOCIADOS",200);
+        }
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
-    
+});
+
+router.delete("/delete", async function(req: Request, res: Response) { //remover contacto
+
+   try {
+      const ver = await contatoPersonalController.eliminarContacto(req.body._id);
+      if(ver != null){
+        responseModule.success(req,res,"SE ELIMINO EL CONTACTO",200);
+      }else{
+          responseModule.success(req,res,"NO SE ENCONTRO EL CONTACTO");
+      }
+      
+     
+   } catch (error) {
+        responseModule.error(req,res,"Error desconocido");
+   }
 });
 
 export default router;
