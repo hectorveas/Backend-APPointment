@@ -14,7 +14,7 @@ function agregarDoctor(doctor : Doctor){
 };
 
 function eliminarDoctor(rutDoctor : string){
-     return model.findOneAndRemove({rut : rutDoctor});
+    return model.findOneAndRemove({rut : rutDoctor});
 }
 
 function existeDoctor(rutDoctor : string){

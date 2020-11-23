@@ -6,7 +6,7 @@ interface contactoPersonalDoc extends Document {
     email: string;
     contrasena: string;
     telefono: string;
-    confirmacion?: boolean;
+    confirmacion: boolean;
     fechaSolicitud: Date;
 }
 
