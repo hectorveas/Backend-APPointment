@@ -76,4 +76,116 @@ router.delete("/delete", function (req, res) {
         }
     });
 });
+router.patch("/patch/nombre", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.modificarNombreDoctor(req.body._id, req.body.nombreDoctor);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.patch("/patch/apellido", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.modificarApellidoDoctor(req.body._id, req.body.apellidoDoctor);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.patch("/patch/mail", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.modificarMailDoctor(req.body._id, req.body.email);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.patch("/patch/fono", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.modificarFonoDoctor(req.body._id, req.body.fono);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.patch("/patch/rut", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.modificarFonoDoctor(req.body._id, req.body.rut);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.patch("/patch/contrasena", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.modificarFonoDoctor(req.body._id, req.body.contrasena);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.patch("/patch/especialidad", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.modificarEspecialidadDoctor(req.body._id, req.body.especialidad);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
 exports.default = router;

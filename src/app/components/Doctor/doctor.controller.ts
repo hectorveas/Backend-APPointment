@@ -30,5 +30,46 @@ async function existeDoctor(rutDoctor : string){
     }
 }
 
+function modificarNombreDoctor(idDoctor : String, nombre : string){
+    return doctorRepository.modificarNombreDoctor(idDoctor, nombre);
+};
 
-export default {mostrarTodoDoctor , BuscarDoctorRut, agregarDoctor, eliminarDoctor,existeDoctor}
+function modificarApellidoDoctor(idDoctor : String, apellido : string){
+    return doctorRepository.modificarApellidoDoctor(idDoctor, apellido);
+};
+
+function modificarMailDoctor(idDoctor : String, emailDoctor : string){
+    return doctorRepository.modificarMailDoctor(idDoctor, emailDoctor);
+};
+
+function modificarFonoDoctor(idDoctor : String, fonoDoctor : string){
+    return doctorRepository.modificarFonoDoctor(idDoctor, fonoDoctor);
+};
+
+function modificarRutDoctor(idDoctor : String, rutDoctor : string){
+    return doctorRepository.modificarRutDoctor(idDoctor, rutDoctor);
+};
+
+function modificarContrasenaDoctor(idDoctor : String, contrasenaDoctor : string){
+    return doctorRepository.modificarContrasenaDoctor(idDoctor, contrasenaDoctor);
+};
+
+function modificarEspecialidadDoctor(idDoctor : String, especialidadDoctor : string){
+    return doctorRepository.modificarEspecialidadDoctor(idDoctor, especialidadDoctor);
+};
+
+
+export default {
+    mostrarTodoDoctor, 
+    BuscarDoctorRut, 
+    agregarDoctor, 
+    eliminarDoctor, 
+    existeDoctor,
+    modificarNombreDoctor,
+    modificarApellidoDoctor,
+    modificarMailDoctor,
+    modificarFonoDoctor,
+    modificarRutDoctor,
+    modificarContrasenaDoctor,
+    modificarEspecialidadDoctor
+}

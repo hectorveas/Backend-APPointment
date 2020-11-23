@@ -22,4 +22,45 @@ function eliminarDoctor(rutDoctor) {
 function existeDoctor(rutDoctor) {
     return doctor_schema_1.default.findOne({ rut: rutDoctor });
 }
-exports.default = { mostrarTodoDoctor, BuscarDoctorRut, agregarDoctor, eliminarDoctor, existeDoctor };
+function modificarNombreDoctor(idDoctor, nombre) {
+    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { nombreDoctor: nombre });
+}
+;
+function modificarApellidoDoctor(idDoctor, apellido) {
+    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { apellidoDoctor: apellido });
+}
+;
+function modificarMailDoctor(idDoctor, emailDoctor) {
+    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { email: emailDoctor });
+}
+;
+function modificarFonoDoctor(idDoctor, fonoDoctor) {
+    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { fono: fonoDoctor });
+}
+;
+function modificarRutDoctor(idDoctor, rutDoctor) {
+    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { rut: rutDoctor });
+}
+;
+function modificarContrasenaDoctor(idDoctor, contrasenaDoctor) {
+    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { contrasena: contrasenaDoctor });
+}
+;
+function modificarEspecialidadDoctor(idDoctor, especialidadDoctor) {
+    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { especialidad: especialidadDoctor });
+}
+;
+exports.default = {
+    mostrarTodoDoctor,
+    BuscarDoctorRut,
+    agregarDoctor,
+    eliminarDoctor,
+    existeDoctor,
+    modificarNombreDoctor,
+    modificarApellidoDoctor,
+    modificarMailDoctor,
+    modificarFonoDoctor,
+    modificarRutDoctor,
+    modificarContrasenaDoctor,
+    modificarEspecialidadDoctor
+};
