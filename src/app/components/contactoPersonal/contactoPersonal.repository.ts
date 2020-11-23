@@ -24,4 +24,15 @@ function buscarContacto(rutContacto : string){
     return model.findOne({rut : rutContacto});
 }
 
-export default {crearContacto , eliminarContacto, mostrarContactos,existeContacto,buscarContacto};
+function modificarConfirmacion(idContacto : String, confirmacionContacto : boolean){
+    return model.findByIdAndUpdate({_id : idContacto}, {confirmacion : confirmacionContacto});
+};
+
+export default {
+    crearContacto, 
+    eliminarContacto, 
+    mostrarContactos,
+    existeContacto,
+    buscarContacto,
+    modificarConfirmacion
+};

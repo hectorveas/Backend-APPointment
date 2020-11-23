@@ -72,4 +72,20 @@ router.delete("/delete", function (req, res) {
         }
     });
 });
+router.patch("/patch/confirmacion", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield contatoPersonal_controller_1.default.modificarConfirmacion(req.body._id, req.body.confirmacion);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE MODIFICO EL CONTACTO", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO EL CONTACTO");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
 exports.default = router;

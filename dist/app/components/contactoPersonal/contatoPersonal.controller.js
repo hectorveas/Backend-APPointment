@@ -24,4 +24,15 @@ function existeContacto(rutContacto) {
 function buscarContacto(idContacto) {
     return contactoPersonal_repository_1.default.buscarContacto(idContacto);
 }
-exports.default = { crearContacto, eliminarContacto, mostrarContactos, existeContacto, buscarContacto };
+function modificarConfirmacion(idContacto, confirmacionContacto) {
+    return contactoPersonal_repository_1.default.modificarConfirmacion(idContacto, confirmacionContacto);
+}
+;
+exports.default = {
+    crearContacto,
+    eliminarContacto,
+    mostrarContactos,
+    existeContacto,
+    buscarContacto,
+    modificarConfirmacion
+};
