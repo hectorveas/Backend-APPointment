@@ -55,7 +55,7 @@ router.get("/rut", function (req, res) {
         }
     });
 });
-router.get("/delete", function (req, res) {
+router.delete("/delete", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const ver = yield paciente_controller_1.default.eliminarPaciente(req.body.rut);
