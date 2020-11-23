@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
-const doctor_schema_1 = __importDefault(require("./doctor.schema"));
+const doctor_controller_1 = __importDefault(require("./doctor.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const doctor = yield doctor_schema_1.default.find();
+            const doctor = yield doctor_controller_1.default.mostrarTodoDoctor();
             response_module_1.default.success(req, res, doctor, 200);
         }
         catch (error) {
@@ -29,19 +29,47 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        //const body: Partial<Message> = req.body;
-        const doctor = {
-            nombreDoctor: req.body['nombreDoctor'],
-            apellidoDoctor: req.body['apellidoDoctor'],
-            rut: req.body['rut'],
-            email: req.body['email'],
-            fono: req.body['fono'],
-            contrasena: req.body['contrasena'],
-            especialidad: req.body['especialidad']
-        };
+        const doctor = req.body;
+        if ((yield doctor_controller_1.default.existeDoctor(req.body.rut)) != true) {
+            try {
+                const newDoctor = yield doctor_controller_1.default.agregarDoctor(doctor);
+                response_module_1.default.success(req, res, newDoctor, 201);
+            }
+            catch (error) {
+                response_module_1.default.error(req, res, "Error desconocido");
+            }
+        }
+        else {
+            response_module_1.default.error(req, res, "DOCTOR EXISTENTE");
+        }
+    });
+});
+router.get("/rut", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
         try {
-            const newMessage = yield doctor_schema_1.default.create(doctor);
-            response_module_1.default.success(req, res, newMessage, 201);
+            const doctor = yield doctor_controller_1.default.BuscarDoctorRut(req.body.rut);
+            if (doctor != null) {
+                response_module_1.default.success(req, res, doctor, 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "No se encontro al doctor", 200);
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.delete("/delete", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield doctor_controller_1.default.eliminarDoctor(req.body.rut);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE ELIMINO AL DOCTOR", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");

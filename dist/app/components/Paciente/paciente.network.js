@@ -48,7 +48,12 @@ router.get("/rut", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const paciente = yield paciente_controller_1.default.BuscarPacienteRut(req.body.rut);
-            response_module_1.default.success(req, res, paciente, 200);
+            if (paciente != null) {
+                response_module_1.default.success(req, res, paciente, 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "No se encontro al paciente", 200);
+            }
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");
