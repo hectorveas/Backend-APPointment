@@ -14,33 +14,42 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
-const cita_schema_1 = __importDefault(require("./cita.schema"));
+const cita_controller_1 = __importDefault(require("./cita.controller"));
 const router = express_1.default.Router();
-router.get("/all", function (req, res) {
+router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const citas = yield cita_controller_1.default.mostrarTodoCita();
+        response_module_1.default.success(req, res, citas, 200);
+    }
+    catch (error) {
+        response_module_1.default.error(req, res, "Error desconocido");
+    }
+}));
+router.post("/add", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    //if( await citaController.existeCita(req.body._id) != true){
+    try {
+        const result = yield cita_controller_1.default.agregarCita(body);
+        response_module_1.default.success(req, res, result);
+    }
+    catch (error) {
+        response_module_1.default.error(req, res, "Error desconocido");
+    }
+    //}
+    //else{
+    //    responseModule.error(req,res,"cita Existente");
+    //}
+}));
+router.delete("/delete", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const citas = yield cita_schema_1.default.find();
-            response_module_1.default.success(req, res, citas, 200);
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
-    });
-});
-router.post("/add", function (req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        //const body: Partial<Message> = req.body;
-        const cita = {
-            nombrePaciente: req.body['nombrePaciente'],
-            descripcion: req.body['descripcion'],
-            estadoCita: req.body['estadoCita'],
-            motivoCancelacion: req.body['motivoCancelacion'],
-            personaCancelar: req.body['personaCancelar'],
-            fechaSolicitud: new Date()
-        };
-        try {
-            const newMessage = yield cita_schema_1.default.create(cita);
-            response_module_1.default.success(req, res, newMessage, 201);
+            const ver = yield cita_controller_1.default.eliminarCita(req.body._id);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE ELIMINO CITA", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO LA CITA");
+            }
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");

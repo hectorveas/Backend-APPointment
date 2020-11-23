@@ -1,4 +1,3 @@
-import e from "express";
 import { Paciente } from "../../models/paciente.model";
 import pacienteRepository from "./paciente.repository"
 

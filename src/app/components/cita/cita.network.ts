@@ -1,54 +1,56 @@
 import express, {Router, Request, Response} from "express"
+import { Cita } from "../../models/cita.model";
 import responseModule from "../../modules/response.module";
-import citaSchema from "./cita.schema";
+import citaController from "./cita.controller";
 
-interface citaDoc{
-    _id?: string;
-    nombrePaciente: string;
-    fechaSolicitud: Date;
-    descripcion: string;
-    estadoCita: string;
-    motivoCancelacion?: string;
-    personaCancelar?: string;
-  }
 
 const router: Router = express.Router();
 
-router.get("/all",async function(req: Request, res: Response){
+router.get("/all",async (req: Request, res: Response) =>{
     
     try {
-        const citas: citaDoc[] = await citaSchema.find();
+        const citas: Cita[] = await citaController.mostrarTodoCita();
         responseModule.success(req, res, citas,200);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
 });
 
-router.post("/add", async function(req: Request, res: Response){
+router.post("/add", async (req: Request, res: Response) =>{
 
-    //const body: Partial<Message> = req.body;
+    const body: Cita = req.body; 
+    //if( await citaController.existeCita(req.body._id) != true){
+        try {
+            const result: Cita = await citaController.agregarCita(body);
+            responseModule.success(req, res, result);
 
-    const cita: Partial<citaDoc> = {
-        nombrePaciente: req.body['nombrePaciente'],
-        descripcion: req.body['descripcion'],
-        estadoCita: req.body['estadoCita'],
-        motivoCancelacion: req.body['motivoCancelacion'],
-        personaCancelar: req.body['personaCancelar'],
-        fechaSolicitud: new Date()
-    };
-
-    try {
-        const newMessage = await citaSchema.create<Partial<citaDoc>>(cita);
-        responseModule.success(req, res, newMessage,201);
-
-    } catch (error) {
-        responseModule.error(req,res,"Error desconocido");
-    }
-
+        } catch (error) {
+            responseModule.error(req,res,"Error desconocido");
+        }
+    //}
+    //else{
+    //    responseModule.error(req,res,"cita Existente");
+    //}
     
     
 });
 
+router.delete("/delete", async function(req: Request, res: Response) { 
 
+    try {
+       const ver = await citaController.eliminarCita(req.body._id);
+       if(ver != null){
+         responseModule.success(req,res,"SE ELIMINO CITA",200);
+       }else{
+           responseModule.success(req,res,"NO SE ENCONTRO LA CITA");
+       }
+       
+      
+    } catch (error) {
+         responseModule.error(req,res,"Error desconocido");
+    }
+ });
 
 export default router;
+
+

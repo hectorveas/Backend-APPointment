@@ -1,5 +1,4 @@
 import express, {Router, Request, Response} from "express"
-import paciente from ".";
 import { Paciente } from "../../models/paciente.model";
 import responseModule from "../../modules/response.module";
 import pacienteController from "./paciente.controller";
@@ -43,7 +42,7 @@ router.get("/rut", async function(req: Request, res: Response){ //busca al pacie
     }
 });
 
-router.get("/delete", async function(req: Request, res: Response) { //remover paciente
+router.delete("/delete", async function(req: Request, res: Response) { //remover paciente
 
    try {
       const ver = await pacienteController.eliminarPaciente(req.body.rut);
