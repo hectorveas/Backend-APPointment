@@ -45,8 +45,6 @@ router.post("/add", async function(req: Request, res: Response){
         responseModule.error(req,res,"Error desconocido");
     }
 
-    
-    
 });
 
 
