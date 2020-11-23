@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
-const contactoPersonal_schema_1 = __importDefault(require("./contactoPersonal.schema"));
+const contatoPersonal_controller_1 = __importDefault(require("./contatoPersonal.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const contactosPersonal = yield contactoPersonal_schema_1.default.find();
-            response_module_1.default.success(req, res, contactosPersonal, 200);
+            const contacto = yield contatoPersonal_controller_1.default.mostrarContactos();
+            response_module_1.default.success(req, res, contacto, 200);
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");
@@ -29,18 +29,43 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        //const body: Partial<Message> = req.body;
-        const contactoPersonal = {
-            nombrePaciente: req.body['nombrePaciente'],
-            email: req.body['email'],
-            contrasena: req.body['contrasena'],
-            telefono: req.body['telefono'],
-            confirmacion: req.body['confirmacion'],
-            fechaSolicitud: new Date()
-        };
+        // if( contatoPersonalController.existeContacto(req.body.rut) == true){ va ??
         try {
-            const newMessage = yield contactoPersonal_schema_1.default.create(contactoPersonal);
-            response_module_1.default.success(req, res, newMessage, 201);
+            const contacto = yield contatoPersonal_controller_1.default.crearContacto(req.body);
+            response_module_1.default.success(req, res, contacto, 201);
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.get("/rut", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            console.log(yield contatoPersonal_controller_1.default.buscarContacto(req.body.rut));
+            let contacto = yield contatoPersonal_controller_1.default.buscarContacto(req.body.rut);
+            if (contacto != null) {
+                response_module_1.default.success(req, res, contacto, 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRARON CONTACTOS ASOCIADOS", 200);
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.delete("/delete", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const ver = yield contatoPersonal_controller_1.default.eliminarContacto(req.body._id);
+            if (ver != null) {
+                response_module_1.default.success(req, res, "SE ELIMINO EL CONTACTO", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO EL CONTACTO");
+            }
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");

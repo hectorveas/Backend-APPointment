@@ -13,4 +13,15 @@ function eliminarContacto(idContacto) {
 function mostrarContactos() {
     return contactoPersonal_repository_1.default.mostrarContactos();
 }
-exports.default = { crearContacto, eliminarContacto, mostrarContactos };
+function existeContacto(rutContacto) {
+    if (contactoPersonal_repository_1.default.existeContacto(rutContacto) == null) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function buscarContacto(idContacto) {
+    return contactoPersonal_repository_1.default.buscarContacto(idContacto);
+}
+exports.default = { crearContacto, eliminarContacto, mostrarContactos, existeContacto, buscarContacto };

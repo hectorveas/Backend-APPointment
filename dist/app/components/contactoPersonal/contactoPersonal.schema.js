@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const schema = new mongoose_1.Schema({
     nombrePaciente: { type: String, required: true },
+    rut: { type: String, required: true },
     email: { type: String, required: true },
     contrasena: { type: String, required: true },
     telefono: { type: String, required: true },

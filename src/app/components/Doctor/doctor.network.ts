@@ -28,7 +28,6 @@ router.post("/add", async function(req: Request, res: Response){ // agrega un do
         }else{
             responseModule.error(req,res,"DOCTOR EXISTENTE");
         }
-    
 });
 
 router.get("/rut", async function(req: Request, res: Response){ //busca al doctor por rut

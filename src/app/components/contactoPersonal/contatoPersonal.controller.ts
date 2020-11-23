@@ -16,5 +16,17 @@ function mostrarContactos(){
     return contactoPersonalRepository.mostrarContactos();
 }
 
-export default {crearContacto , eliminarContacto, mostrarContactos};
+function existeContacto(rutContacto: string){
+    if(contactoPersonalRepository.existeContacto(rutContacto) == null){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function buscarContacto(idContacto : string){
+    return contactoPersonalRepository.buscarContacto(idContacto);
+}
+
+export default {crearContacto , eliminarContacto, mostrarContactos,existeContacto,buscarContacto};
 

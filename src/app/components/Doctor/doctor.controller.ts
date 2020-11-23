@@ -7,8 +7,10 @@ function mostrarTodoDoctor(){
 };
 
 function BuscarDoctorRut(rut : string){
+    
     return doctorRepository.BuscarDoctorRut(rut);
 };
+
 
 function agregarDoctor(doctor : Doctor){
 

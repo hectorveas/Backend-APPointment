@@ -8,7 +8,7 @@ interface citaDoc extends Document {
     estadoCita: string;
     motivoCancelacion?: string;
     personaCancelar?: string;
-  }
+}
 
 const schema: Schema<citaDoc> = new Schema({
     nombrePaciente: {type: String, required: true},
@@ -19,4 +19,4 @@ const schema: Schema<citaDoc> = new Schema({
     fechaSolicitud: {type: Date}
 });
 
-export default model<citaDoc>('Cita', schema, 'cita')
+export default model<citaDoc>('Cita', schema, 'cita');
