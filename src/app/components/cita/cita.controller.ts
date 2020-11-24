@@ -33,4 +33,6 @@ async function existeCita(id : string){
 }
 
 
+
+
 export default {mostrarTodoCita , BuscarCitaId, agregarCita, eliminarCita,existeCita}

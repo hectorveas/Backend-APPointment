@@ -26,19 +26,14 @@ router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 }));
 router.post("/add", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const body = req.body;
-    //if( await citaController.existeCita(req.body._id) != true){
+    const cita = req.body;
     try {
-        const result = yield cita_controller_1.default.agregarCita(body);
-        response_module_1.default.success(req, res, result);
+        const newContacto = yield cita_controller_1.default.agregarCita(cita);
+        response_module_1.default.success(req, res, newContacto, 201);
     }
     catch (error) {
         response_module_1.default.error(req, res, "Error desconocido");
     }
-    //}
-    //else{
-    //    responseModule.error(req,res,"cita Existente");
-    //}
 }));
 router.delete("/delete", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {

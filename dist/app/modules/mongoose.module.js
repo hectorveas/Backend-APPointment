@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 function connect() {
     const mongoUri = 'mongodb+srv://Appointment:aE9qUF1gAgre4bVb@cluster0.qrd8g.mongodb.net/'; //'mongodb+srv://user:1234@cluster0-emxsf.mongodb.net/backend-ay'
-    const nameDB = 'testCrisi';
+    const nameDB = 'APPointmentOficial';
     const options = {
         useNewUrlParser: true,
         useUnifiedTopology: true,

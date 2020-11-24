@@ -2,19 +2,19 @@ import { Schema, model, Document } from "mongoose";
 
 interface contactoDoc extends Document {
     _id: string;
-    nombrePaciente: string;
-    apellidoPaciente: string;
+    nombre: string;
+    apellido: string;
     rut: string;
-    email: string;
+    mail: string;
     descripcion: string;
     fechaSolicitud: Date;
   }
 
 const schema: Schema<contactoDoc> = new Schema({
-    nombrePaciente: {type: String, required: true},
-    apellidoPaciente: {type: String, required: true},
+    nombre: {type: String, required: true},
+    apellido: {type: String, required: true},
     rut: {type: String, required: true},
-    email: {type: String, required: true},
+    mail: {type: String, required: true},
     descripcion: {type: String, required: true},
     fechaSolicitud: {type: Date}
 });

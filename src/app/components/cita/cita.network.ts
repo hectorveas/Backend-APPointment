@@ -18,22 +18,15 @@ router.get("/all",async (req: Request, res: Response) =>{
 
 router.post("/add", async (req: Request, res: Response) =>{
 
-    const body: Cita = req.body; 
-    //if( await citaController.existeCita(req.body._id) != true){
+        const cita : Cita = req.body;
         try {
-            const result: Cita = await citaController.agregarCita(body);
-            responseModule.success(req, res, result);
-
+            const newContacto = await citaController.agregarCita(cita);
+            responseModule.success(req, res, newContacto,201);
         } catch (error) {
             responseModule.error(req,res,"Error desconocido");
-        }
-    //}
-    //else{
-    //    responseModule.error(req,res,"cita Existente");
-    //}
-    
-    
+        }  
 });
+
 
 router.delete("/delete", async function(req: Request, res: Response) { 
 
@@ -50,6 +43,8 @@ router.delete("/delete", async function(req: Request, res: Response) {
          responseModule.error(req,res,"Error desconocido");
     }
  });
+
+
 
 export default router
 

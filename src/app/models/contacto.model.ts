@@ -1,9 +1,9 @@
 export interface Contacto{
     _id?: string;
-    nombrePaciente: string;
-    apellidoPaciente: string;
+    nombre: string;
+    apellido: string;
     rut: string;
-    email: string;
+    mail: string;
     descripcion: string;
     fechaSolicitud: Date;
   }

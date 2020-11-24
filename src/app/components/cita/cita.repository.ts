@@ -21,5 +21,4 @@ function existeCita(id: string){
     return citaSchema.findById({_id : id})
 }
 
-
 export default {mostrarTodoCita , BuscarCitaId, agregarCita, eliminarCita,existeCita}
