@@ -60,4 +60,19 @@ router.delete("/delete", async function(req: Request, res: Response) { //remover
    }
 });
 
+router.patch("/patch/confirmacion", async function(req: Request, res: Response) {
+    
+    try {
+        const ver = await contatoPersonalController.modificarConfirmacion(req.body._id, req.body.confirmacion);
+        if(ver != null){
+          responseModule.success(req,res,"SE MODIFICO EL CONTACTO",200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO EL CONTACTO");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
 export default router;

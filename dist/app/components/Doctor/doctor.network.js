@@ -76,4 +76,21 @@ router.delete("/delete", function (req, res) {
         }
     });
 });
+router.patch("/:id", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            const modDoctor = yield doctor_controller_1.default.modificarDoctor(id, req.body);
+            if (modDoctor != null) {
+                response_module_1.default.success(req, res, modDoctor, 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
 exports.default = router;

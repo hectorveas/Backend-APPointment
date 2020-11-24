@@ -21,4 +21,16 @@ function existeDoctor(rutDoctor : string){
     return model.findOne({rut : rutDoctor});
 }
 
-export default {mostrarTodoDoctor , BuscarDoctorRut, agregarDoctor, eliminarDoctor, existeDoctor}
+
+async function modificarDoctor(idDoctor : string, doctor : Partial<Doctor>) : Promise<Partial<Doctor | null>>{
+    return model.findByIdAndUpdate(idDoctor, doctor);
+};
+
+export default {
+    mostrarTodoDoctor, 
+    BuscarDoctorRut, 
+    agregarDoctor, 
+    eliminarDoctor, 
+    existeDoctor,
+    modificarDoctor
+}

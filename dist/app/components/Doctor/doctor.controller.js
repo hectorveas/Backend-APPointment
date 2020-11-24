@@ -39,4 +39,15 @@ function existeDoctor(rutDoctor) {
         }
     });
 }
-exports.default = { mostrarTodoDoctor, BuscarDoctorRut, agregarDoctor, eliminarDoctor, existeDoctor };
+function modificarDoctor(idDoctor, doctor) {
+    return doctor_repository_1.default.modificarDoctor(idDoctor, doctor);
+}
+;
+exports.default = {
+    mostrarTodoDoctor,
+    BuscarDoctorRut,
+    agregarDoctor,
+    eliminarDoctor,
+    existeDoctor,
+    modificarDoctor
+};

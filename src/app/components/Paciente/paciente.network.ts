@@ -61,5 +61,95 @@ router.delete("/delete", async function(req: Request, res: Response) { //remover
    }
 });
 
+router.patch("/patch/nombre", async function(req: Request, res: Response) {
+    
+    try {
+        const ver = await pacienteController.modificarNombrePaciente(req.body._id, req.body.nombrePaciente);
+        if(ver != null){
+          responseModule.success(req,res,"SE MODIFICO AL PACIENTE",200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
+router.patch("/patch/apellido", async function(req: Request, res: Response) {
+    
+    try {
+        const ver = await pacienteController.modificarApellidoPaciente(req.body._id, req.body.apellidoPaciente);
+        if(ver != null){
+          responseModule.success(req,res,"SE MODIFICO AL PACIENTE",200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
+router.patch("/patch/mail", async function(req: Request, res: Response) {
+    
+    try {
+        const ver = await pacienteController.modificarMailPaciente(req.body._id, req.body.email);
+        if(ver != null){
+          responseModule.success(req,res,"SE MODIFICO AL PACIENTE",200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
+router.patch("/patch/fono", async function(req: Request, res: Response) {
+    
+    try {
+        const ver = await pacienteController.modificarFonoPaciente(req.body._id, req.body.fono);
+        if(ver != null){
+          responseModule.success(req,res,"SE MODIFICO AL PACIENTE",200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
+router.patch("/patch/rut", async function(req: Request, res: Response) {
+    
+    try {
+        const ver = await pacienteController.modificarFonoPaciente(req.body._id, req.body.rut);
+        if(ver != null){
+          responseModule.success(req,res,"SE MODIFICO AL PACIENTE",200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
+router.patch("/patch/contrasena", async function(req: Request, res: Response) {
+    
+    try {
+        const ver = await pacienteController.modificarFonoPaciente(req.body._id, req.body.contrasena);
+        if(ver != null){
+          responseModule.success(req,res,"SE MODIFICO AL PACIENTE",200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO AL PACIENTE");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
 export default router;
 

@@ -22,4 +22,4 @@ const schema: Schema<contactoPersonalDoc> = new Schema({
     fechaSolicitud: {type: Date}
 });
 
-export default model<contactoPersonalDoc>('ContactoPersonal', schema, 'contactoPersonal')
+export default model<contactoPersonalDoc>('ContactoPersonal', schema, 'contactoPersonal');

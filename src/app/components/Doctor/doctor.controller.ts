@@ -30,5 +30,17 @@ async function existeDoctor(rutDoctor : string){
     }
 }
 
+function modificarDoctor(idDoctor : string, doctor : Partial<Doctor>) : Promise<Partial<Doctor | null>>{
+    return doctorRepository.modificarDoctor(idDoctor, doctor);
+};
 
-export default {mostrarTodoDoctor , BuscarDoctorRut, agregarDoctor, eliminarDoctor,existeDoctor}
+
+
+export default {
+    mostrarTodoDoctor, 
+    BuscarDoctorRut, 
+    agregarDoctor, 
+    eliminarDoctor, 
+    existeDoctor,
+    modificarDoctor
+}

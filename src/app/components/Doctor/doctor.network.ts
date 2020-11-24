@@ -60,6 +60,28 @@ router.delete("/delete", async function(req: Request, res: Response) { //remover
    }
 });
 
+
+
+router.patch("/:id", async function(req: Request, res: Response) {
+    
+    const {id} = req.params;
+    
+    try {
+        const modDoctor = await doctorController.modificarDoctor(id,req.body);
+        if(modDoctor != null){
+          responseModule.success(req,res,modDoctor,200);
+        }else{
+            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
+        }
+  
+     } catch (error) {
+          responseModule.error(req,res,"Error desconocido");
+     }
+});
+
+
+
+
 export default router;
 
 

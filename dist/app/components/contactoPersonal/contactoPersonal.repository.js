@@ -20,4 +20,15 @@ function existeContacto(rutContacto) {
 function buscarContacto(rutContacto) {
     return contactoPersonal_schema_1.default.findOne({ rut: rutContacto });
 }
-exports.default = { crearContacto, eliminarContacto, mostrarContactos, existeContacto, buscarContacto };
+function modificarConfirmacion(idContacto, confirmacionContacto) {
+    return contactoPersonal_schema_1.default.findByIdAndUpdate({ _id: idContacto }, { confirmacion: confirmacionContacto });
+}
+;
+exports.default = {
+    crearContacto,
+    eliminarContacto,
+    mostrarContactos,
+    existeContacto,
+    buscarContacto,
+    modificarConfirmacion
+};

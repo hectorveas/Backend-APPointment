@@ -28,5 +28,16 @@ function buscarContacto(idContacto : string){
     return contactoPersonalRepository.buscarContacto(idContacto);
 }
 
-export default {crearContacto , eliminarContacto, mostrarContactos,existeContacto,buscarContacto};
+function modificarConfirmacion(idContacto : String, confirmacionContacto : boolean){
+    return contactoPersonalRepository.modificarConfirmacion(idContacto, confirmacionContacto);
+};
+
+export default {
+    crearContacto,
+    eliminarContacto, 
+    mostrarContactos,
+    existeContacto,
+    buscarContacto,
+    modificarConfirmacion
+};
 
