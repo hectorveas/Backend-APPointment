@@ -60,12 +60,16 @@ router.delete("/delete", async function(req: Request, res: Response) { //remover
    }
 });
 
-router.patch("/patch/nombre", async function(req: Request, res: Response) {
+
+
+router.patch("/:id", async function(req: Request, res: Response) {
+    
+    const {id} = req.params;
     
     try {
-        const ver = await doctorController.modificarNombreDoctor(req.body._id, req.body.nombreDoctor);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO AL DOCTOR",200);
+        const modDoctor = await doctorController.modificarDoctor(id,req.body);
+        if(modDoctor != null){
+          responseModule.success(req,res,modDoctor,200);
         }else{
             responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
         }
@@ -74,97 +78,6 @@ router.patch("/patch/nombre", async function(req: Request, res: Response) {
           responseModule.error(req,res,"Error desconocido");
      }
 });
-
-router.patch("/patch/apellido", async function(req: Request, res: Response) {
-    
-    try {
-        const ver = await doctorController.modificarApellidoDoctor(req.body._id, req.body.apellidoDoctor);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO AL DOCTOR",200);
-        }else{
-            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
-        }
-  
-     } catch (error) {
-          responseModule.error(req,res,"Error desconocido");
-     }
-});
-
-router.patch("/patch/mail", async function(req: Request, res: Response) {
-    
-    try {
-        const ver = await doctorController.modificarMailDoctor(req.body._id, req.body.email);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO AL DOCTOR",200);
-        }else{
-            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
-        }
-  
-     } catch (error) {
-          responseModule.error(req,res,"Error desconocido");
-     }
-});
-
-router.patch("/patch/fono", async function(req: Request, res: Response) {
-    
-    try {
-        const ver = await doctorController.modificarFonoDoctor(req.body._id, req.body.fono);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO AL DOCTOR",200);
-        }else{
-            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
-        }
-  
-     } catch (error) {
-          responseModule.error(req,res,"Error desconocido");
-     }
-});
-
-router.patch("/patch/rut", async function(req: Request, res: Response) {
-    
-    try {
-        const ver = await doctorController.modificarFonoDoctor(req.body._id, req.body.rut);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO AL DOCTOR",200);
-        }else{
-            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
-        }
-  
-     } catch (error) {
-          responseModule.error(req,res,"Error desconocido");
-     }
-});
-
-router.patch("/patch/contrasena", async function(req: Request, res: Response) {
-    
-    try {
-        const ver = await doctorController.modificarFonoDoctor(req.body._id, req.body.contrasena);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO AL DOCTOR",200);
-        }else{
-            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
-        }
-  
-     } catch (error) {
-          responseModule.error(req,res,"Error desconocido");
-     }
-});
-
-router.patch("/patch/especialidad", async function(req: Request, res: Response) {
-    
-    try {
-        const ver = await doctorController.modificarEspecialidadDoctor(req.body._id, req.body.especialidad);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO AL DOCTOR",200);
-        }else{
-            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
-        }
-  
-     } catch (error) {
-          responseModule.error(req,res,"Error desconocido");
-     }
-});
-
 
 
 

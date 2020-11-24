@@ -1,17 +1,7 @@
 import { Schema, model, Document } from "mongoose";
+import { Doctor } from "../../models/doctor.model";
 
-interface doctorDoc extends Document {
-    _id: string;
-    nombreDoctor: string;
-    apellidoDoctor: string;
-    rut: string;
-    email: string;
-    fono: string;
-    contrasena: string;
-    especialidad: string;
-}
-
-const schema: Schema<doctorDoc> = new Schema({
+const definition: Partial<Record<keyof Doctor, any>> = {
     nombreDoctor: {type: String, required: true},
     apellidoDoctor: {type: String, required: true},
     rut: {type: String, required: true},
@@ -19,6 +9,9 @@ const schema: Schema<doctorDoc> = new Schema({
     fono: {type: String, required: true},
     contrasena: {type: String, required: true},
     especialidad: {type: String, required: true}
-});
+    
+}
 
-export default model<doctorDoc>('Doctor', schema, 'doctor')
+const schema: Schema<Doctor> = new Schema(definition);
+
+export default model<Doctor & Document>('Doctor', schema, 'doctor')

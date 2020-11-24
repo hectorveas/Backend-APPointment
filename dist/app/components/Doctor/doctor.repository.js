@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -22,32 +31,10 @@ function eliminarDoctor(rutDoctor) {
 function existeDoctor(rutDoctor) {
     return doctor_schema_1.default.findOne({ rut: rutDoctor });
 }
-function modificarNombreDoctor(idDoctor, nombre) {
-    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { nombreDoctor: nombre });
-}
-;
-function modificarApellidoDoctor(idDoctor, apellido) {
-    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { apellidoDoctor: apellido });
-}
-;
-function modificarMailDoctor(idDoctor, emailDoctor) {
-    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { email: emailDoctor });
-}
-;
-function modificarFonoDoctor(idDoctor, fonoDoctor) {
-    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { fono: fonoDoctor });
-}
-;
-function modificarRutDoctor(idDoctor, rutDoctor) {
-    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { rut: rutDoctor });
-}
-;
-function modificarContrasenaDoctor(idDoctor, contrasenaDoctor) {
-    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { contrasena: contrasenaDoctor });
-}
-;
-function modificarEspecialidadDoctor(idDoctor, especialidadDoctor) {
-    return doctor_schema_1.default.findByIdAndUpdate({ _id: idDoctor }, { especialidad: especialidadDoctor });
+function modificarDoctor(idDoctor, doctor) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return doctor_schema_1.default.findByIdAndUpdate(idDoctor, doctor);
+    });
 }
 ;
 exports.default = {
@@ -56,11 +43,5 @@ exports.default = {
     agregarDoctor,
     eliminarDoctor,
     existeDoctor,
-    modificarNombreDoctor,
-    modificarApellidoDoctor,
-    modificarMailDoctor,
-    modificarFonoDoctor,
-    modificarRutDoctor,
-    modificarContrasenaDoctor,
-    modificarEspecialidadDoctor
+    modificarDoctor
 };

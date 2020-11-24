@@ -39,32 +39,8 @@ function existeDoctor(rutDoctor) {
         }
     });
 }
-function modificarNombreDoctor(idDoctor, nombre) {
-    return doctor_repository_1.default.modificarNombreDoctor(idDoctor, nombre);
-}
-;
-function modificarApellidoDoctor(idDoctor, apellido) {
-    return doctor_repository_1.default.modificarApellidoDoctor(idDoctor, apellido);
-}
-;
-function modificarMailDoctor(idDoctor, emailDoctor) {
-    return doctor_repository_1.default.modificarMailDoctor(idDoctor, emailDoctor);
-}
-;
-function modificarFonoDoctor(idDoctor, fonoDoctor) {
-    return doctor_repository_1.default.modificarFonoDoctor(idDoctor, fonoDoctor);
-}
-;
-function modificarRutDoctor(idDoctor, rutDoctor) {
-    return doctor_repository_1.default.modificarRutDoctor(idDoctor, rutDoctor);
-}
-;
-function modificarContrasenaDoctor(idDoctor, contrasenaDoctor) {
-    return doctor_repository_1.default.modificarContrasenaDoctor(idDoctor, contrasenaDoctor);
-}
-;
-function modificarEspecialidadDoctor(idDoctor, especialidadDoctor) {
-    return doctor_repository_1.default.modificarEspecialidadDoctor(idDoctor, especialidadDoctor);
+function modificarDoctor(idDoctor, doctor) {
+    return doctor_repository_1.default.modificarDoctor(idDoctor, doctor);
 }
 ;
 exports.default = {
@@ -73,11 +49,5 @@ exports.default = {
     agregarDoctor,
     eliminarDoctor,
     existeDoctor,
-    modificarNombreDoctor,
-    modificarApellidoDoctor,
-    modificarMailDoctor,
-    modificarFonoDoctor,
-    modificarRutDoctor,
-    modificarContrasenaDoctor,
-    modificarEspecialidadDoctor
+    modificarDoctor
 };
