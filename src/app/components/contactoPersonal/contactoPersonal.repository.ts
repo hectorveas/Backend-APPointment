@@ -1,4 +1,5 @@
 import { Contacto } from "../../models/contactoPersonal.model";
+import cita from "../cita";
 import model from "./contactoPersonal.schema";
 
 
