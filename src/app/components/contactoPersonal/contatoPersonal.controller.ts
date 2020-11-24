@@ -28,8 +28,8 @@ function buscarContacto(idContacto : string){
     return contactoPersonalRepository.buscarContacto(idContacto);
 }
 
-function modificarConfirmacion(idContacto : String, confirmacionContacto : boolean){
-    return contactoPersonalRepository.modificarConfirmacion(idContacto, confirmacionContacto);
+async function modificarContacto(idContacto : string, contactoPersonal : Partial<Contacto>) : Promise<Partial<Contacto | null>>{
+    return contactoPersonalRepository.modificarContacto(idContacto, contactoPersonal);
 };
 
 export default {
@@ -38,6 +38,6 @@ export default {
     mostrarContactos,
     existeContacto,
     buscarContacto,
-    modificarConfirmacion
+    modificarContacto
 };
 

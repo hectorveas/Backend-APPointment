@@ -1,10 +1,10 @@
 import { Contacto } from "../../models/contactoPersonal.model";
-import cita from "../cita";
 import model from "./contactoPersonal.schema";
 
 
 function crearContacto(contacto : Contacto){
     contacto.fechaSolicitud = new Date();
+    contacto.confirmacion = true;
     return model.create<Contacto>(contacto);
 }
 
@@ -25,9 +25,10 @@ function buscarContacto(rutContacto : string){
     return model.findOne({rut : rutContacto});
 }
 
-function modificarConfirmacion(idContacto : String, confirmacionContacto : boolean){
-    return model.findByIdAndUpdate({_id : idContacto}, {confirmacion : confirmacionContacto});
+async function modificarContacto(idContacto : string, contactoPersonal : Partial<Contacto>) : Promise<Partial<Contacto | null>>{
+    return model.findByIdAndUpdate(idContacto, contactoPersonal);
 };
+
 
 export default {
     crearContacto, 
@@ -35,5 +36,5 @@ export default {
     mostrarContactos,
     existeContacto,
     buscarContacto,
-    modificarConfirmacion
+    modificarContacto
 };

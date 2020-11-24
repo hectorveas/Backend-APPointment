@@ -72,15 +72,16 @@ router.delete("/delete", function (req, res) {
         }
     });
 });
-router.patch("/patch/confirmacion", function (req, res) {
+router.patch("/:id", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const { id } = req.params;
         try {
-            const ver = yield contatoPersonal_controller_1.default.modificarConfirmacion(req.body._id, req.body.confirmacion);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO EL CONTACTO", 200);
+            const modDoctor = yield contatoPersonal_controller_1.default.modificarContacto(id, req.body);
+            if (modDoctor != null) {
+                response_module_1.default.success(req, res, modDoctor, 200);
             }
             else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO EL CONTACTO");
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
             }
         }
         catch (error) {

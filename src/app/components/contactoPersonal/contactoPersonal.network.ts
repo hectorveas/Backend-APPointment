@@ -1,5 +1,4 @@
 import express, {Router, Request, Response} from "express"
-import contactoPersonal from ".";
 import { Contacto } from "../../models/contactoPersonal.model";
 import responseModule from "../../modules/response.module";
 import contatoPersonalController from "./contatoPersonal.controller";
@@ -60,14 +59,16 @@ router.delete("/delete", async function(req: Request, res: Response) { //remover
    }
 });
 
-router.patch("/patch/confirmacion", async function(req: Request, res: Response) {
+router.patch("/:id", async function(req: Request, res: Response) {
+    
+    const {id} = req.params;
     
     try {
-        const ver = await contatoPersonalController.modificarConfirmacion(req.body._id, req.body.confirmacion);
-        if(ver != null){
-          responseModule.success(req,res,"SE MODIFICO EL CONTACTO",200);
+        const modDoctor = await contatoPersonalController.modificarContacto(id,req.body);
+        if(modDoctor != null){
+          responseModule.success(req,res,modDoctor,200);
         }else{
-            responseModule.success(req,res,"NO SE ENCONTRO EL CONTACTO");
+            responseModule.success(req,res,"NO SE ENCONTRO AL DOCTOR");
         }
   
      } catch (error) {
