@@ -1,16 +1,16 @@
 import { Contacto } from "../../models/contacto.model";
-import model from "./contacto.schema";
+import contactoSchema from "./contacto.schema";
 
-function mostrarTodoContacto(){
-    return model.find();
+async function mostrarTodoContacto() :Promise<Contacto[]> {
+    return contactoSchema.find();
 };
 
-function agregarContacto(contacto : Contacto){
-    return model.create<Contacto>(contacto);
+function agregarContacto(contacto : Contacto): Promise<Contacto>{
+    return contactoSchema.create<Contacto>(contacto);
 };
 
 function eliminarContacto(id : string){
-     return model.remove({_id : id});
+     return contactoSchema.remove({_id : id});
 }
 
 

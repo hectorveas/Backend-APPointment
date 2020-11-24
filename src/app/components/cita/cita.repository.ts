@@ -21,4 +21,8 @@ function existeCita(id: string){
     return citaSchema.findById({_id : id})
 }
 
-export default {mostrarTodoCita , BuscarCitaId, agregarCita, eliminarCita,existeCita}
+async function modificarCita(_id : string, cita : Partial<Cita>) : Promise<Partial<Cita | null>>{
+    return citaSchema.findByIdAndUpdate(_id, cita);
+};
+
+export default {mostrarTodoCita , BuscarCitaId, agregarCita, eliminarCita,existeCita, modificarCita}

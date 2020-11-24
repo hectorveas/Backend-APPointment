@@ -30,4 +30,10 @@ function eliminarCita(id) {
 function existeCita(id) {
     return cita_schema_1.default.findById({ _id: id });
 }
-exports.default = { mostrarTodoCita, BuscarCitaId, agregarCita, eliminarCita, existeCita };
+function modificarCita(_id, cita) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return cita_schema_1.default.findByIdAndUpdate(_id, cita);
+    });
+}
+;
+exports.default = { mostrarTodoCita, BuscarCitaId, agregarCita, eliminarCita, existeCita, modificarCita };

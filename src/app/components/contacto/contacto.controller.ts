@@ -1,12 +1,12 @@
 import { Contacto } from "../../models/contacto.model";
 import contactoRepository from "./contacto.repository"
 
-function mostrarTodoContacto(){
+function mostrarTodoContacto():Promise<Contacto[]>{
     return contactoRepository.mostrarTodoContacto();
 };
 
 
-function agregarContacto(contacto : Contacto){
+function agregarContacto(contacto : Contacto): Promise<Contacto>{
     contacto.fechaSolicitud = new Date();
     return contactoRepository.agregarContacto(contacto);
     

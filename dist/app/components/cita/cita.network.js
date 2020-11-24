@@ -28,8 +28,8 @@ router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 router.post("/add", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const cita = req.body;
     try {
-        const newContacto = yield cita_controller_1.default.agregarCita(cita);
-        response_module_1.default.success(req, res, newContacto, 201);
+        const newCita = yield cita_controller_1.default.agregarCita(cita);
+        response_module_1.default.success(req, res, newCita, 201);
     }
     catch (error) {
         response_module_1.default.error(req, res, "Error desconocido");
@@ -41,6 +41,23 @@ router.delete("/delete", function (req, res) {
             const ver = yield cita_controller_1.default.eliminarCita(req.body._id);
             if (ver != null) {
                 response_module_1.default.success(req, res, "SE ELIMINO CITA", 200);
+            }
+            else {
+                response_module_1.default.success(req, res, "NO SE ENCONTRO LA CITA");
+            }
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.patch("/patch", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { _id } = req.params;
+        try {
+            const modCita = yield cita_controller_1.default.modificarCita(_id, req.body);
+            if (modCita != null) {
+                response_module_1.default.success(req, res, modCita, 200);
             }
             else {
                 response_module_1.default.success(req, res, "NO SE ENCONTRO LA CITA");

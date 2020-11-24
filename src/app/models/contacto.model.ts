@@ -4,6 +4,6 @@ export interface Contacto{
     apellido: string;
     rut: string;
     mail: string;
-    descripcion: string;
+    consulta: string;
     fechaSolicitud: Date;
   }
