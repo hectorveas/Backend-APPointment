@@ -40,28 +40,10 @@ function existePaciente(rutPaciente) {
         }
     });
 }
-function modificarNombrePaciente(idPaciente, nombre) {
-    return paciente_repository_1.default.modificarNombrePaciente(idPaciente, nombre);
-}
-;
-function modificarApellidoPaciente(idPaciente, apellido) {
-    return paciente_repository_1.default.modificarApellidoPaciente(idPaciente, apellido);
-}
-;
-function modificarMailPaciente(idPaciente, emailPaciente) {
-    return paciente_repository_1.default.modificarMailPaciente(idPaciente, emailPaciente);
-}
-;
-function modificarFonoPaciente(idPaciente, fonoPaciente) {
-    return paciente_repository_1.default.modificarFonoPaciente(idPaciente, fonoPaciente);
-}
-;
-function modificarRutPaciente(idPaciente, rutPaciente) {
-    return paciente_repository_1.default.modificarRutPaciente(idPaciente, rutPaciente);
-}
-;
-function modificarContrasenaPaciente(idPaciente, contrasenaPaciente) {
-    return paciente_repository_1.default.modificarContrasenaPaciente(idPaciente, contrasenaPaciente);
+function modificarPaciente(idPaciente, paciente) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return paciente_repository_1.default.modificarPaciente(idPaciente, paciente);
+    });
 }
 ;
 exports.default = {
@@ -70,10 +52,5 @@ exports.default = {
     agregarPaciente,
     eliminarPaciente,
     existePaciente,
-    modificarNombrePaciente,
-    modificarApellidoPaciente,
-    modificarMailPaciente,
-    modificarFonoPaciente,
-    modificarRutPaciente,
-    modificarContrasenaPaciente,
+    modificarPaciente
 };
