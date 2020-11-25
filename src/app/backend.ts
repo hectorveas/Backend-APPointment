@@ -9,7 +9,7 @@ async function main() {
   const port: number = 29341;
 
   server.use(express.json()); // que mande y llegue todo en json
-  server.use(cors);
+  server.use(cors());
   server.use(morgan("dev"));
 
   server.use("/api", ...components); // '...components' es equivalente a for i < components.length

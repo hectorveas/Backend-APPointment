@@ -1,7 +1,7 @@
 export interface Cita {
   _id?: string;
-  nombrePaciente: string;
-  fechaSolicitud: Date;
+  paciente: string;
+  fechaConsulta: Date;
   descripcion: string;
   estadoCita: string;
   motivoCancelacion?: string;

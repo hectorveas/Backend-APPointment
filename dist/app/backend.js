@@ -22,7 +22,7 @@ function main() {
         const server = express_1.default(); // new Express();
         const port = 29341;
         server.use(express_1.default.json()); // que mande y llegue todo en json
-        server.use(cors_1.default);
+        server.use(cors_1.default());
         server.use(morgan_1.default("dev"));
         server.use("/api", ...components_1.default); // '...components' es equivalente a for i < components.length
         try {
