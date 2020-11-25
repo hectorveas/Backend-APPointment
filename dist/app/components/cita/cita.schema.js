@@ -4,7 +4,7 @@ const mongoose_1 = require("mongoose");
 const definition = {
     paciente: { type: String, required: true },
     descripcion: { type: String, required: true },
-    estadoCita: { type: String, required: true },
+    estadoCita: { type: String, required: true, default: "reciente" },
     motivoCancelacion: { type: String, required: false },
     personaCancelar: { type: String, required: false },
     fechaConsulta: { type: Date },
