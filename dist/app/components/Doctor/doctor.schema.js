@@ -8,7 +8,7 @@ const definition = {
     email: { type: String, required: true },
     fono: { type: String, required: true },
     contrasena: { type: String, required: true },
-    especialidad: { type: String, required: true }
+    especialidad: { type: String, required: true },
 };
 const schema = new mongoose_1.Schema(definition);
-exports.default = mongoose_1.model('Doctor', schema, 'doctor');
+exports.default = mongoose_1.model("Doctor", schema, "doctor");

@@ -7,7 +7,7 @@ const definition = {
     estadoCita: { type: String, required: true },
     motivoCancelacion: { type: String, required: false },
     personaCancelar: { type: String, required: false },
-    fechaSolicitud: { type: Date }
+    fechaSolicitud: { type: Date },
 };
 const schema = new mongoose_1.Schema(definition);
-exports.default = mongoose_1.model('Cita', schema, 'cita');
+exports.default = mongoose_1.model("Cita", schema, "cita");

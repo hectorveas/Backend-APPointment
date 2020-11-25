@@ -8,6 +8,6 @@ const schema = new mongoose_1.Schema({
     contrasena: { type: String, required: true },
     telefono: { type: String, required: true },
     confirmacion: { type: String, required: false },
-    fechaSolicitud: { type: Date }
+    fechaSolicitud: { type: Date },
 });
-exports.default = mongoose_1.model('ContactoPersonal', schema, 'contactoPersonal');
+exports.default = mongoose_1.model("ContactoPersonal", schema, "contactoPersonal");

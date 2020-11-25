@@ -18,11 +18,9 @@ function mostrarTodoContacto() {
         return contacto_schema_1.default.find();
     });
 }
-;
 function agregarContacto(contacto) {
     return contacto_schema_1.default.create(contacto);
 }
-;
 function eliminarContacto(id) {
     return contacto_schema_1.default.remove({ _id: id });
 }

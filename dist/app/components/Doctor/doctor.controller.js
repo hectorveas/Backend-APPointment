@@ -16,15 +16,12 @@ const doctor_repository_1 = __importDefault(require("./doctor.repository"));
 function mostrarTodoDoctor() {
     return doctor_repository_1.default.mostrarTodoDoctor();
 }
-;
 function BuscarDoctorRut(rut) {
     return doctor_repository_1.default.BuscarDoctorRut(rut);
 }
-;
 function agregarDoctor(doctor) {
     return doctor_repository_1.default.agregarDoctor(doctor);
 }
-;
 function eliminarDoctor(rutDoctor) {
     return doctor_repository_1.default.eliminarDoctor(rutDoctor);
 }
@@ -42,12 +39,11 @@ function existeDoctor(rutDoctor) {
 function modificarDoctor(idDoctor, doctor) {
     return doctor_repository_1.default.modificarDoctor(idDoctor, doctor);
 }
-;
 exports.default = {
     mostrarTodoDoctor,
     BuscarDoctorRut,
     agregarDoctor,
     eliminarDoctor,
     existeDoctor,
-    modificarDoctor
+    modificarDoctor,
 };

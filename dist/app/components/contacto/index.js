@@ -6,5 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const contacto_network_1 = __importDefault(require("./contacto.network"));
 const contacto = express_1.default();
-contacto.use('/contacto', contacto_network_1.default);
+contacto.use("/contacto", contacto_network_1.default);
 exports.default = contacto;

@@ -6,5 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const doctor_network_1 = __importDefault(require("./doctor.network"));
 const doctor = express_1.default();
-doctor.use('/doctor', doctor_network_1.default);
+doctor.use("/doctor", doctor_network_1.default);
 exports.default = doctor;

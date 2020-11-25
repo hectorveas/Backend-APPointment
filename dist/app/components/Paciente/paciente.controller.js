@@ -16,16 +16,13 @@ const paciente_repository_1 = __importDefault(require("./paciente.repository"));
 function mostrarTodoPaciente() {
     return paciente_repository_1.default.mostrarTodoPaciente();
 }
-;
 function BuscarPacienteRut(rut) {
     return paciente_repository_1.default.BuscarPacienteRut(rut);
 }
-;
 function agregarPaciente(paciente) {
     paciente.createdAt = new Date();
     return paciente_repository_1.default.agregarPaciente(paciente);
 }
-;
 function eliminarPaciente(rutPaciente) {
     return paciente_repository_1.default.eliminarPaciente(rutPaciente);
 }
@@ -40,40 +37,16 @@ function existePaciente(rutPaciente) {
         }
     });
 }
-function modificarNombrePaciente(idPaciente, nombre) {
-    return paciente_repository_1.default.modificarNombrePaciente(idPaciente, nombre);
+function modificarPaciente(idPaciente, paciente) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return paciente_repository_1.default.modificarPaciente(idPaciente, paciente);
+    });
 }
-;
-function modificarApellidoPaciente(idPaciente, apellido) {
-    return paciente_repository_1.default.modificarApellidoPaciente(idPaciente, apellido);
-}
-;
-function modificarMailPaciente(idPaciente, emailPaciente) {
-    return paciente_repository_1.default.modificarMailPaciente(idPaciente, emailPaciente);
-}
-;
-function modificarFonoPaciente(idPaciente, fonoPaciente) {
-    return paciente_repository_1.default.modificarFonoPaciente(idPaciente, fonoPaciente);
-}
-;
-function modificarRutPaciente(idPaciente, rutPaciente) {
-    return paciente_repository_1.default.modificarRutPaciente(idPaciente, rutPaciente);
-}
-;
-function modificarContrasenaPaciente(idPaciente, contrasenaPaciente) {
-    return paciente_repository_1.default.modificarContrasenaPaciente(idPaciente, contrasenaPaciente);
-}
-;
 exports.default = {
     mostrarTodoPaciente,
     BuscarPacienteRut,
     agregarPaciente,
     eliminarPaciente,
     existePaciente,
-    modificarNombrePaciente,
-    modificarApellidoPaciente,
-    modificarMailPaciente,
-    modificarFonoPaciente,
-    modificarRutPaciente,
-    modificarContrasenaPaciente,
+    modificarPaciente,
 };

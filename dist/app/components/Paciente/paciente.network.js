@@ -18,6 +18,7 @@ const paciente_controller_1 = __importDefault(require("./paciente.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //muestra a todos los pacientes
         try {
             const paciente = yield paciente_controller_1.default.mostrarTodoPaciente();
             response_module_1.default.success(req, res, paciente, 200);
@@ -29,6 +30,7 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        // agrega un paciente
         const paciente = req.body;
         if ((yield paciente_controller_1.default.existePaciente(req.body.rut)) != true) {
             try {
@@ -46,6 +48,7 @@ router.post("/add", function (req, res) {
 });
 router.get("/rut", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //busca al paciente por rut
         try {
             const paciente = yield paciente_controller_1.default.BuscarPacienteRut(req.body.rut);
             if (paciente != null) {
@@ -62,6 +65,7 @@ router.get("/rut", function (req, res) {
 });
 router.delete("/delete", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //remover paciente
         try {
             const ver = yield paciente_controller_1.default.eliminarPaciente(req.body.rut);
             if (ver != null) {
@@ -76,92 +80,13 @@ router.delete("/delete", function (req, res) {
         }
     });
 });
-router.patch("/patch/nombre", function (req, res) {
+router.patch("/:id", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const { id } = req.params;
         try {
-            const ver = yield paciente_controller_1.default.modificarNombrePaciente(req.body._id, req.body.nombrePaciente);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO AL PACIENTE", 200);
-            }
-            else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO AL PACIENTE");
-            }
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
-    });
-});
-router.patch("/patch/apellido", function (req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const ver = yield paciente_controller_1.default.modificarApellidoPaciente(req.body._id, req.body.apellidoPaciente);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO AL PACIENTE", 200);
-            }
-            else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO AL PACIENTE");
-            }
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
-    });
-});
-router.patch("/patch/mail", function (req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const ver = yield paciente_controller_1.default.modificarMailPaciente(req.body._id, req.body.email);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO AL PACIENTE", 200);
-            }
-            else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO AL PACIENTE");
-            }
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
-    });
-});
-router.patch("/patch/fono", function (req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const ver = yield paciente_controller_1.default.modificarFonoPaciente(req.body._id, req.body.fono);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO AL PACIENTE", 200);
-            }
-            else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO AL PACIENTE");
-            }
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
-    });
-});
-router.patch("/patch/rut", function (req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const ver = yield paciente_controller_1.default.modificarFonoPaciente(req.body._id, req.body.rut);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO AL PACIENTE", 200);
-            }
-            else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO AL PACIENTE");
-            }
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
-    });
-});
-router.patch("/patch/contrasena", function (req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const ver = yield paciente_controller_1.default.modificarFonoPaciente(req.body._id, req.body.contrasena);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO AL PACIENTE", 200);
+            const modPaciente = yield paciente_controller_1.default.modificarPaciente(id, req.body);
+            if (modPaciente != null) {
+                response_module_1.default.success(req, res, modPaciente, 200);
             }
             else {
                 response_module_1.default.success(req, res, "NO SE ENCONTRO AL PACIENTE");

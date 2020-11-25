@@ -1,6 +1,6 @@
 /**
  * @author Hector Veas
  */
-import  backend from "./app/backend";
+import backend from "./app/backend";
 
 backend.main();

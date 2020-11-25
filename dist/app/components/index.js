@@ -13,6 +13,6 @@ const components = [
     contacto_1.default,
     contactoPersonal_1.default,
     Doctor_1.default,
-    Paciente_1.default
+    Paciente_1.default,
 ];
 exports.default = components;

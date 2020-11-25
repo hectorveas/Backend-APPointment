@@ -7,7 +7,7 @@ const definition = {
     rut: { type: String, required: true },
     mail: { type: String, required: true },
     consulta: { type: String, required: true },
-    fechaSolicitud: { type: Date }
+    fechaSolicitud: { type: Date },
 };
 const schema = new mongoose_1.Schema(definition);
-exports.default = mongoose_1.model('Contacto', schema, 'contacto');
+exports.default = mongoose_1.model("Contacto", schema, "contacto");

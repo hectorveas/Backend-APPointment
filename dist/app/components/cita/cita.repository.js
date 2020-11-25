@@ -35,5 +35,11 @@ function modificarCita(_id, cita) {
         return cita_schema_1.default.findByIdAndUpdate(_id, cita);
     });
 }
-;
-exports.default = { mostrarTodoCita, BuscarCitaId, agregarCita, eliminarCita, existeCita, modificarCita };
+exports.default = {
+    mostrarTodoCita,
+    BuscarCitaId,
+    agregarCita,
+    eliminarCita,
+    existeCita,
+    modificarCita,
+};

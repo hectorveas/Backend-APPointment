@@ -18,6 +18,7 @@ const contatoPersonal_controller_1 = __importDefault(require("./contatoPersonal.
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //muestra a todos los contactos
         try {
             const contacto = yield contatoPersonal_controller_1.default.mostrarContactos();
             response_module_1.default.success(req, res, contacto, 200);
@@ -29,6 +30,7 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        // agrega un contacto
         // if( contatoPersonalController.existeContacto(req.body.rut) == true){ va ??
         try {
             const contacto = yield contatoPersonal_controller_1.default.crearContacto(req.body);
@@ -41,6 +43,7 @@ router.post("/add", function (req, res) {
 });
 router.get("/rut", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //busca al contacto por rut
         try {
             console.log(yield contatoPersonal_controller_1.default.buscarContacto(req.body.rut));
             let contacto = yield contatoPersonal_controller_1.default.buscarContacto(req.body.rut);
@@ -58,6 +61,7 @@ router.get("/rut", function (req, res) {
 });
 router.delete("/delete", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //remover contacto
         try {
             const ver = yield contatoPersonal_controller_1.default.eliminarContacto(req.body._id);
             if (ver != null) {
@@ -72,15 +76,16 @@ router.delete("/delete", function (req, res) {
         }
     });
 });
-router.patch("/patch/confirmacion", function (req, res) {
+router.patch("/:id", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const { id } = req.params;
         try {
-            const ver = yield contatoPersonal_controller_1.default.modificarConfirmacion(req.body._id, req.body.confirmacion);
-            if (ver != null) {
-                response_module_1.default.success(req, res, "SE MODIFICO EL CONTACTO", 200);
+            const modDoctor = yield contatoPersonal_controller_1.default.modificarContacto(id, req.body);
+            if (modDoctor != null) {
+                response_module_1.default.success(req, res, modDoctor, 200);
             }
             else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO EL CONTACTO");
+                response_module_1.default.success(req, res, "NO SE ENCONTRO AL DOCTOR");
             }
         }
         catch (error) {

@@ -51,17 +51,12 @@ router.delete("/delete", function (req, res) {
         }
     });
 });
-router.patch("/patch", function (req, res) {
+router.patch("/:id", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { _id } = req.params;
+        const { id } = req.params;
         try {
-            const modCita = yield cita_controller_1.default.modificarCita(_id, req.body);
-            if (modCita != null) {
-                response_module_1.default.success(req, res, modCita, 200);
-            }
-            else {
-                response_module_1.default.success(req, res, "NO SE ENCONTRO LA CITA");
-            }
+            const modCita = yield cita_controller_1.default.modificarCita(id, req.body);
+            response_module_1.default.success(req, res, modCita, 200);
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");

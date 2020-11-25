@@ -16,15 +16,12 @@ const doctor_schema_1 = __importDefault(require("./doctor.schema"));
 function mostrarTodoDoctor() {
     return doctor_schema_1.default.find();
 }
-;
 function BuscarDoctorRut(rutDoctor) {
     return doctor_schema_1.default.findOne({ rut: rutDoctor });
 }
-;
 function agregarDoctor(doctor) {
     return doctor_schema_1.default.create(doctor);
 }
-;
 function eliminarDoctor(rutDoctor) {
     return doctor_schema_1.default.findOneAndRemove({ rut: rutDoctor });
 }
@@ -36,12 +33,11 @@ function modificarDoctor(idDoctor, doctor) {
         return doctor_schema_1.default.findByIdAndUpdate(idDoctor, doctor);
     });
 }
-;
 exports.default = {
     mostrarTodoDoctor,
     BuscarDoctorRut,
     agregarDoctor,
     eliminarDoctor,
     existeDoctor,
-    modificarDoctor
+    modificarDoctor,
 };

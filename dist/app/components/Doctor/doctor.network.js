@@ -18,6 +18,7 @@ const doctor_controller_1 = __importDefault(require("./doctor.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //muestra a todos los doctors
         try {
             const doctor = yield doctor_controller_1.default.mostrarTodoDoctor();
             response_module_1.default.success(req, res, doctor, 200);
@@ -29,6 +30,7 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        // agrega un doctor
         const doctor = req.body;
         if ((yield doctor_controller_1.default.existeDoctor(req.body.rut)) != true) {
             try {
@@ -46,6 +48,7 @@ router.post("/add", function (req, res) {
 });
 router.get("/rut", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //busca al doctor por rut
         try {
             const doctor = yield doctor_controller_1.default.BuscarDoctorRut(req.body.rut);
             if (doctor != null) {
@@ -62,6 +65,7 @@ router.get("/rut", function (req, res) {
 });
 router.delete("/delete", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        //remover doctor
         try {
             const ver = yield doctor_controller_1.default.eliminarDoctor(req.body.rut);
             if (ver != null) {
