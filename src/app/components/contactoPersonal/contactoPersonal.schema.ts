@@ -12,11 +12,12 @@ interface contactoPersonalDoc extends Document {
 }
 
 const schema: Schema<contactoPersonalDoc> = new Schema({
-  nombrePaciente: { type: String, required: true },
+  nombre: { type: String, required: true },
+  apellido: { type: String, required: true },
   rut: { type: String, required: true },
-  email: { type: String, required: true },
-  contrasena: { type: String, required: true },
-  telefono: { type: String, required: true },
+  mail: { type: String, required: true },
+  contrasena: { type: String, required: false },
+  telefono: { type: String, required: false },
   confirmacion: { type: String, required: false },
   fechaSolicitud: { type: Date },
 });
