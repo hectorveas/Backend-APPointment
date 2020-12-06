@@ -1,4 +1,4 @@
-export interface Contacto {
+export interface ContactoPersonal {
   _id: string;
   nombrePaciente: string;
   rut: string;

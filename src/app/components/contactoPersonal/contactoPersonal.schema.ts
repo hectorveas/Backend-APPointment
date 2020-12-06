@@ -1,7 +1,7 @@
 import { Schema, model, Document } from "mongoose";
-import  {Contacto} from "../../models/contactoPersonal.model";
+import  {ContactoPersonal} from "../../models/contactoPersonal.model";
 
-const definition: Partial<Record<keyof Contacto, any>> = {
+const definition: Partial<Record<keyof ContactoPersonal, any>> = {
   nombrePaciente: { type: String, required: true },
   rut: { type: String, required: true },
   email: { type: String, required: true },
@@ -11,6 +11,6 @@ const definition: Partial<Record<keyof Contacto, any>> = {
   fechaSolicitud: { type: Date },
 };
 
-const schema: Schema<Contacto> = new Schema(definition);
+const schema: Schema<ContactoPersonal> = new Schema(definition);
 
-export default model<Contacto & Document>("Contacto", schema, "contacto");
+export default model<ContactoPersonal & Document>("ContactoPersonal", schema, "contactoPersonal");

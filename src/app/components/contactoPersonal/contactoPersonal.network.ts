@@ -1,5 +1,5 @@
 import express, { Router, Request, Response } from "express";
-import { Contacto } from "../../models/contactoPersonal.model";
+import { ContactoPersonal } from "../../models/contactoPersonal.model";
 import responseModule from "../../modules/response.module";
 import contatoPersonalController from "./contatoPersonal.controller";
 
@@ -9,7 +9,7 @@ router.get("/all", async function (req: Request, res: Response) {
   //muestra a todos los contactos
 
   try {
-    const contacto: Contacto[] = await contatoPersonalController.mostrarContactos();
+    const contacto: ContactoPersonal[] = await contatoPersonalController.mostrarContactos();
     responseModule.success(req, res, contacto, 200);
   } catch (error) {
     responseModule.error(req, res, "Error desconocido");
@@ -32,7 +32,7 @@ router.get("/rut", async function (req: Request, res: Response) {
   //busca al contacto por rut
   try {
     console.log(await contatoPersonalController.buscarContacto(req.body.rut));
-    let contacto: Contacto | null = await contatoPersonalController.buscarContacto(
+    let contacto: ContactoPersonal | null = await contatoPersonalController.buscarContacto(
       req.body.rut
     );
 
