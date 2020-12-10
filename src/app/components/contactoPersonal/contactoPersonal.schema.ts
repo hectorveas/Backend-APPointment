@@ -1,5 +1,5 @@
 import { Schema, model, Document } from "mongoose";
-import  { ContactoPersonal } from "../../models/contactoPersonal.model";
+import  {ContactoPersonal} from "../../models/contactoPersonal.model";
 
 const definition: Partial<Record<keyof ContactoPersonal, any>> = {
   nombrePaciente: { type: String, required: true },
