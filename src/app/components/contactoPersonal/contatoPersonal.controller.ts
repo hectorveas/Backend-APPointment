@@ -1,7 +1,7 @@
-import { Contacto } from "../../models/contactoPersonal.model";
+import { ContactoPersonal } from "../../models/contactoPersonal.model";
 import contactoPersonalRepository from "./contactoPersonal.repository";
 
-function crearContacto(contacto: Contacto) {
+function crearContacto(contacto: ContactoPersonal) {
   return contactoPersonalRepository.crearContacto(contacto);
 }
 
@@ -27,8 +27,8 @@ function buscarContacto(idContacto: string) {
 
 async function modificarContacto(
   idContacto: string,
-  contactoPersonal: Partial<Contacto>
-): Promise<Partial<Contacto | null>> {
+  contactoPersonal: Partial<ContactoPersonal>
+): Promise<Partial<ContactoPersonal | null>> {
   return contactoPersonalRepository.modificarContacto(
     idContacto,
     contactoPersonal

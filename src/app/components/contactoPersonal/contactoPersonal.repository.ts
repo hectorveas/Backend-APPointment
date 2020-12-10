@@ -1,10 +1,10 @@
-import { Contacto } from "../../models/contactoPersonal.model";
+import { ContactoPersonal } from "../../models/contactoPersonal.model";
 import model from "./contactoPersonal.schema";
 
-function crearContacto(contacto: Contacto) {
+function crearContacto(contacto: ContactoPersonal) {
   contacto.fechaSolicitud = new Date();
   contacto.confirmacion = true;
-  return model.create<Contacto>(contacto);
+  return model.create<ContactoPersonal>(contacto);
 }
 
 function eliminarContacto(idContacto: string) {
@@ -25,8 +25,8 @@ function buscarContacto(rutContacto: string) {
 
 async function modificarContacto(
   idContacto: string,
-  contactoPersonal: Partial<Contacto>
-): Promise<Partial<Contacto | null>> {
+  contactoPersonal: Partial<ContactoPersonal>
+): Promise<Partial<ContactoPersonal | null>> {
   return model.findByIdAndUpdate(idContacto, contactoPersonal);
 }
 
